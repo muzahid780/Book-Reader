@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enhanced Book Reader Web Application</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Banner Section -->
+    <section id="banner">
+      <h1>📚 Welcome to the Enhanced Book Reader!</h1>
+      <p>Discover, read, and manage your favorite books online...</p>
+    </section>
+
+    <!-- Navigation -->
+    <nav>
+      <ul>
+        <li>
+          <a href="#" onclick="event.preventDefault(); showSection('home')"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a href="#" onclick="event.preventDefault(); showSection('about')"
+            >About</a
+          >
+        </li>
+        <li>
+          <a href="#" onclick="event.preventDefault(); showSection('contact')"
+            >Contact</a
+          >
+        </li>
+        <li>
+          <a href="#" onclick="event.preventDefault(); showSection('reader')"
+            >Read Book</a
+          >
+        </li>
+        <li>
+          <a href="#" onclick="event.preventDefault(); showSection('bookshelf')"
+            >My Bookshelf</a
+          >
+        </li>
+        <li>
+          <a href="#" onclick="event.preventDefault(); showSection('admin')"
+            >Admin</a
+          >
+        </li>
+        <li>
+          <a href="#" onclick="event.preventDefault(); showSection('cart')"
+            >Cart</a
+          >
+        </li>
+      </ul>
+      <div id="nav-right">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search books..."
+          oninput="filterBooks()"
+          aria-label="Search books"
+        />
+        <span id="user-info" class="user-info"></span>
+        <button id="login-btn" onclick="showSection('login')">Login</button>
+        <button id="logout-btn" onclick="logout()" style="display: none">
+          Logout
+        </button>
+      </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="active">
+      <h2>Available Books</h2>
+      <ul id="book-list"></ul>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <h1>About Book Reader</h1>
+      <p>
+        This enhanced web app lets you read books in PDF format right in your
+        browser, with added features like personalized bookshelves, user
+        accounts, and improved PDF navigation.
+      </p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h1>Contact Us</h1>
+      <p>Email: support@bookreader.com</p>
+      <p>Phone: +123-456-7890</p>
+    </section>
+
+    <!-- Reader Section -->
+    <section id="reader">
+      <h1 id="book-title">Select a Book to Read</h1>
+      <div class="pdf-controls">
+        <button id="prev-page">Previous Page</button>
+        <button id="next-page">Next Page</button>
+        <button id="zoom-in">Zoom In</button>
+        <button id="zoom-out">Zoom Out</button>
+        <!--<button id="fit-width">Fit Width</button>-->
+      </div>
+      <div class="page-info">
+        Page: <span id="current-page">1</span> of
+        <span id="total-pages">-</span>
+      </div>
+      <div id="pdf-container">
+        <div id="pdf-loading" class="pdf-loading" style="display: none">
+          <div class="spinner"></div>
+        </div>
+        <div id="pdf-error" class="pdf-error" style="display: none">
+          <h3>Error loading PDF</h3>
+          <p>Please try another book or check the file path.</p>
+          <button onclick="retryLoadingPDF()">Retry</button>
+          <button onclick="showSection('home')">Back to Books</button>
+        </div>
+        <canvas id="pdf-canvas"></canvas>
+      </div>
+    </section>
+
+    <!-- Bookshelf Section -->
+    <section id="bookshelf">
+      <h1>My Personal Bookshelf</h1>
+      <p>Your collection of saved books</p>
+      <ul id="bookshelf-list"></ul>
+    </section>
+
+    <!-- Admin Section -->
+    <section id="admin">
+      <h1>Admin Panel</h1>
+      <form id="add-book-form">
+        <input type="text" id="new-title" placeholder="Book Title" required />
+        <input
+          type="text"
+          id="new-src"
+          placeholder="PDF URL (e.g., https://example.com/sample.pdf)"
+          required
+        />
+        <button type="submit">Add Book</button>
+      </form>
+      <ul id="admin-book-list"></ul>
+    </section>
+
+    <!-- Cart Section -->
+    <section id="cart">
+      <h1>Your Book Cart</h1>
+      <p>
+        💰 Wallet Balance: <span id="wallet-balance">5</span> downloads left
+      </p>
+      <ul id="cart-list"></ul>
+    </section>
+
+    <!-- Login Section -->
+    <section id="login">
+      <h1>Login</h1>
+      <div class="tab-buttons">
+        <button id="login-tab" class="active" onclick="switchAuthTab('login')">
+          Login
+        </button>
+        <button id="register-tab" onclick="switchAuthTab('register')">
+          Register
+        </button>
+      </div>
+      <form id="login-form">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+      <p id="login-status" style="color: red; margin-top: 10px"></p>
+    </section>
+
+    <!-- Register Section -->
+    <section id="register">
+      <h1>Create Account</h1>
+      <div class="tab-buttons">
+        <button id="login-tab2" onclick="switchAuthTab('login')">Login</button>
+        <button
+          id="register-tab2"
+          class="active"
+          onclick="switchAuthTab('register')"
+        >
+          Register
+        </button>
+      </div>
+      <form id="register-form">
+        <input
+          type="text"
+          id="new-username"
+          placeholder="Choose Username"
+          required
+        />
+        <input
+          type="password"
+          id="new-password"
+          placeholder="Choose Password"
+          required
+        />
+        <input type="email" id="email" placeholder="Email Address" required />
+        <button type="submit">Create Account</button>
+      </form>
+      <p id="register-status" style="color: red; margin-top: 10px"></p>
+    </section>
+
+    <!-- Add PDF.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

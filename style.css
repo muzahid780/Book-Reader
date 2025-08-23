@@ -1,0 +1,429 @@
+/* style.css */
+/* Base font size */
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+/* Reset and global font */
+body {
+  font-family: "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+/* Banner Section */
+#banner {
+  background: linear-gradient(90deg, #6a11cb, #2575fc);
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 7px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#banner h1 {
+  margin: 0 0 10px 0;
+  font-size: 2.5rem;
+}
+
+#banner p {
+  margin: 0;
+  font-size: 1.2rem;
+  opacity: 0.85;
+}
+
+/* Navigation */
+nav {
+  background-color: #333;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+  flex-wrap: wrap;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+  flex-grow: 1;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #6a11cb;
+}
+
+/* Search Input */
+#search-input {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: none;
+  width: 180px;
+  max-width: 100%;
+  margin-right: 10px;
+}
+
+/* Section visibility */
+/* Hide all sections by default */
+section {
+  display: none;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Show only the active one */
+section.active,
+#banner {
+  display: block;
+}
+
+/* Home Section */
+#home {
+  color: black;
+  text-align: center;
+}
+
+/* Common List Styles */
+#book-list,
+#cart-list,
+#admin-book-list,
+#bookshelf-list {
+  list-style: none;
+  padding: 0;
+  color: #333;
+  margin: auto;
+  max-width: 600px;
+}
+
+#book-list li,
+#cart-list li,
+#admin-book-list li,
+#bookshelf-list li {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+/* Common Button Styles */
+#book-list button,
+#cart-list button,
+#admin-book-list button,
+#bookshelf-list button,
+.pdf-controls button {
+  margin-top: 8px;
+  padding: 10px 15px;
+  background-color: #6a11cb;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  width: 90%;
+  max-width: 400px;
+  font-weight: bold;
+}
+
+#cart-list button {
+  width: 50%;
+}
+
+#book-list button:hover,
+#cart-list button:hover,
+#admin-book-list button:hover,
+#bookshelf-list button:hover,
+.pdf-controls button:hover {
+  background-color: #2575fc;
+}
+
+/* Admin Panel Centering */
+#admin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 20vh;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+/* Admin Form */
+#admin form,
+#register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 30px;
+}
+
+#admin input,
+#register-form input {
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+#admin button,
+#register-form button {
+  background-color: #6a11cb;
+  color: white;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+#cart {
+  text-align: center;
+  color: black;
+}
+
+/* PDF Viewer Controls */
+.pdf-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.pdf-controls button {
+  width: auto;
+  padding: 8px 15px;
+}
+
+.page-info {
+  text-align: center;
+  margin: 10px 0;
+  font-weight: bold;
+  color: #6a11cb;
+}
+
+/* PDF Viewer Canvas */
+#pdf-canvas {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  direction: ltr;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Error message styling */
+.pdf-error {
+  text-align: center;
+  color: #d32f2f;
+  padding: 20px;
+  background-color: #ffebee;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 10px 0;
+    width: 100%;
+  }
+
+  #search-input {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  #book-list button {
+    width: 90%;
+    font-size: 1rem;
+  }
+
+  #banner h1 {
+    font-size: 1.8rem;
+  }
+
+  #banner p {
+    font-size: 1rem;
+  }
+
+  #home h2 {
+    font-size: 1.5rem;
+  }
+
+  #nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .pdf-controls {
+    flex-wrap: wrap;
+  }
+}
+
+/* LOGIN SECTION STYLING */
+#login,
+#register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #fff;
+}
+
+#login h1,
+#register h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #6a11cb;
+}
+
+#login-form,
+#register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
+}
+
+#login-form input,
+#register-form input {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+}
+
+#login-form button,
+#register-form button {
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #6a11cb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+#login-form button:hover,
+#register-form button:hover {
+  background-color: #2575fc;
+}
+
+.add-to-cart {
+  background-color: #45a049;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.add-to-cart:hover {
+  background-color: #3d8b40;
+}
+
+.user-info {
+  color: white;
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.tab-buttons button {
+  padding: 10px 20px;
+  background-color: #eee;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tab-buttons button.active {
+  background-color: #6a11cb;
+  color: white;
+}
+
+/* Loading spinner */
+.pdf-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #6a11cb;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
