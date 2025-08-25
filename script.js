@@ -151,21 +151,21 @@ function renderBookList(filter = "") {
   filteredBooks.forEach((book) => {
     const li = document.createElement("li");
 
-    const titleSpan = document.createElement("span");
+    const titleSpan = document.createElement("span"); // available books btn
     titleSpan.textContent = book.title;
     titleSpan.style.fontWeight = "bold";
     titleSpan.style.marginBottom = "10px";
 
-    const readBtn = document.createElement("button");
+    const readBtn = document.createElement("button"); // read btn
     readBtn.textContent = "Read Now";
     readBtn.onclick = () => loadBook(book.id);
 
-    const cartBtn = document.createElement("button");
+    const cartBtn = document.createElement("button"); //cart btn
     cartBtn.textContent = "📥 Add to Cart";
     cartBtn.classList.add("add-to-cart");
     cartBtn.onclick = () => addToCart(book);
 
-    const shelfBtn = document.createElement("button");
+    const shelfBtn = document.createElement("button"); //bookshelf btn
     shelfBtn.textContent = "📚 Add to Bookshelf";
     shelfBtn.classList.add("add-to-bookshelf");
     shelfBtn.onclick = () => addToBookshelf(book);
